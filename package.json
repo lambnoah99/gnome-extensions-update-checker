@@ -8,5 +8,8 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "scripts": {
+    "build-compile": "bun build ./index.ts --compile --outfile update-checker"
   }
 }
