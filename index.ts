@@ -34,7 +34,27 @@ for (const ef of extensionFolders) {
   }
 }
 
-console.table(results);
+console.log("------------------------");
+results
+  .sort((a, b) => a.isSupported - b.isSupported)
+  .forEach(({ extensionName, highestVersion, isSupported }) => {
+    console.log(
+      `${
+        isSupported ? "✅" : "❌"
+      } ${extensionName} | Highest Supported Version: ${highestVersion}`
+    );
+  });
+console.log("------------------------");
+const unsupportedCount: number = results.filter(
+  ({ isSupported }) => isSupported
+).length;
+console.log(
+  `${
+    unsupportedCount !== 0
+      ? `${unsupportedCount} Extensions not`
+      : "All Extentensions"
+  } Supported by next Gnome-Version`
+);
 
 async function getCurrentGnomeVersion(): Promise<number> {
   console.log("Current Version: ");
